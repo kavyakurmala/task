@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+    <title>curd operations</title>
+</head>
+<body>
+    <header>
+        <h1>This is curd operations:kavya</h1>
+    </header>
+    <table>
+        <tr>
+            <td>
+                <form method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}   
+    <input type = 'submit' value = 'submit' >
+                </form>
+            </td>
+            <td>
+                <table class="list">
+                    <thead>
+                        <tr>
+                            <th>testing</th>
+                            <th>developing</th>
+                            <th>sales</th>
+                            <th>maintaining</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    {% if software_form  %}
+                    {% for d in software_form %}
+                    <tbody>
+                        <td>{{d.testing}}</td>
+                        <td>{{d.developing}}</td>
+                        <td>{{d.sales}}</td>
+                        <td>{{d.maintaining}}</td>
+                        <td><a href="{% url 'app1:up' d.pk %}"><button style="color: white; background-color:orangered;">update</button></a></td>
+                        <td><a href="{% url 'app1:deltedata' d.pk %}"><button style="background-color:aqua; color:black">delete</button></a></td>
+                    </tbody>
+                    {% endfor %}
+                    {% else %}
+                    <p>data not found</p>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+    <footer>
+        <h1>Thank you</h1>
+    </footer>
+</body>
+</html>
